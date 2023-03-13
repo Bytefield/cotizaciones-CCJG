@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+
+    <title>C&C JG</title>
+</head>
+<body>
+    <h1>Cotizaciones Cerraduras y Cocinas JG</h1>
+    <div>
+        <p>¿Que producto deseas cotizar el dia de hoy?</p>
+        <select id="productos-dropdown">
+            <option value="">Seleccione producto...</option>
+            {% for producto in data["productos"] %}
+                <option value="{{ producto }}">{{ producto }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div id="componentes-container">
+        {% for producto in data["productos"] %}
+            <div data-map="{{ producto }}">{{ producto }}</div>
+        {% endfor %}
+    </div>
+
+    <script>
+        let dropdown = document.getElementById("productos-dropdown"),
+            componentesContainer = document.getElementById("componentes-container"),
+            itemContainers = componentesContainer.children
+
+        Array.from(itemContainers).map((e,i) => {
+            e.classList.add("oculto");
+        });
+
+        dropdown.addEventListener("change", function(event) {
+
+            Array.from(itemContainers).map((e,i) => {
+                e.classList.add("oculto");
+            });
+
+            let selectedItem = event.target.value;
+            componentesContainer.querySelector('[data-map=' + String(selectedItem) + ']').classList.remove("oculto");
+        });
+    </script>
+
+</body>
+</html>
