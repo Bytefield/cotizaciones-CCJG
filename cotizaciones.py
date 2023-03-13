@@ -15,8 +15,8 @@
 # ¿que producto deseas cotizar el dia de hoy? '''))
 
 if cotizar == 'a':
-    print('usted desea cotizar cocinas')
-
+    print('ustedinas')
+ desea cotizar coc
 elif cotizar == 'b':
     print('usted desea cotizar puertas')
 
